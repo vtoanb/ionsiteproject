@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  
+
   <!-- font tieng viet -->
   <link href='https://fonts.googleapis.com/css?family=Noto+Sans&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
@@ -19,22 +19,26 @@
       font: 400 15px/1.8 Open sans, sans-serif;
       color: #777;
   }
-  
+
   h3, h4 {
       margin: 10px 0 30px 0;
-      letter-spacing: 10px;      
+      letter-spacing: 10px;
       font-size: 40px;
       color: #111;
   }
-  
 
-  
+
+
   .carousel-text{
-    font-size: 18px;  
+    font-size: 18px;
   }
   .container {
       padding: 80px 120px;
   }
+  .container_sm {
+      padding: 20px 40px;
+  }
+
   .person {
       border: 10px solid transparent;
       margin-bottom: 25px;
@@ -47,7 +51,7 @@
   }
   .carousel-inner img {
       -webkit-filter: grayscale(0%);
-      filter: grayscale(0%); /* make all photos black and white */ 
+      filter: grayscale(0%); /* make all photos black and white */
       width: 100%; /* Set width to 100% */
       margin: auto;
   }
@@ -110,10 +114,10 @@
       width: 100%;
       height: 400px;
       -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-  }  
+      /*filter: grayscale(100%);*/
+  }
   .navbar {
-      
+
       /*font-family: Montserrat, sans-serif; change to vietnamese font */
       font-family: Open sans, sans-serif;
       margin-bottom: 0;
@@ -123,7 +127,7 @@
       letter-spacing: 4px;
       opacity: 0.9;
   }
-  .navbar li a, .navbar .navbar-brand { 
+  .navbar li a, .navbar .navbar-brand {
       color: #d5d5d5 !important;
   }
   .navbar-nav li a:hover {
@@ -157,7 +161,7 @@
   footer a:hover {
       color: #777;
       text-decoration: none;
-  }  
+  }
   .form-control {
       border-radius: 0;
   }
@@ -174,7 +178,7 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#myPage">iON</a>
     </div>
@@ -190,7 +194,7 @@
           <ul class="dropdown-menu">
             <li><a href="#">CHIẾN DỊCH MARKETING</a></li>
             <li><a href="#">BLOG</a></li>
-            <li><a href="#">KHÁCH HÀNG</a></li> 
+            <li><a href="#">KHÁCH HÀNG</a></li>
           </ul>
         </li>
         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
@@ -217,8 +221,7 @@
     {%load static%}
     {% for d in carouseldat %}
         <div class="item {%cycle 'active' '' '' '' '' '' '' '' '' '' ''%}">
-           
-            <img src="{% static d.2 %}" alt="New York" width="1200" height="700">
+            <img src="{%static d.2 %}" alt="New York" width="1200" height="700">
             <div class="carousel-caption">
                 <h3>{{d.0}}</h3>
                 <p class="carousel-text">{{d.1}}</p>
@@ -234,26 +237,26 @@
         <div class="carousel-caption">
           <h3>New York</h3>
           <p>The atmosphere in New York is lorem ipsum.</p>
-        </div>      
+        </div>
       </div>
 
       <div class="item">
         {% load static %}
         <img src="{% static 'mainapp/image/moon.jpg' %}" alt="New York" width="1200" height="700">
-        
+
         <div class="carousel-caption">
           <h3>Chicago</h3>
           <p>Thank you, Chicago - A night we won't forget.</p>
-        </div>      
+        </div>
       </div>
-    
+
       <div class="item">
         {% load static %}
         <img src="{% static 'mainapp/image/misshim.jpg' %}" alt="New York" width="1200" height="700">
         <div class="carousel-caption">
           <h3>LA</h3>
           <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
-        </div>      
+        </div>
       </div>
     </div>
 -->
@@ -271,20 +274,19 @@
 <!-- Container (The Band Section) -->
 <div id="band" class="container text-center">
   <h3>SỰ KIỆN</h3>
-  <p><em>Chúng tôi yêu thích tổ chức sự kiện</em></p>
-  <p>Khi cần tổ chức sự kiện nhằm quảng bá hình ảnh của công ty đến khách hàng hãy đến với chúng tôi. Chúng tôi có rất nhiều kinh nghiệm trong tổ chức sự kiện vv
-      chúng tôi đã từng tổ chức nhiều sự kiện ca nhạc, nghệ thuật và quảng bá hình ảnh công ty thành công tốt đẹp. Khách hàng rất hài lòng vì hiệu quả của chiến dịch mang lại hehe
-  </p>
+  <p>{{captiondat.0.0}}</p>
   <br>
   <div class="row">
       {%load static%}
       {%for e in eventdat%}
       <div class="col-sm-4">
         <p class="text-center"><strong>{{e.0}}</strong></p><br>
-        <img src="{% static e.2 %}" class="img-rounded person" alt="Random Name" width="255" height="255">
-        <!--div id="demo" data-toggle="collapse">
+            <a href="#demo{{forloop.counter}}" data-toggle="collapse">
+              <img src="{% static e.2 %}" class="img-rounded person" alt="Random Name" width="255" height="auto">
+            </a>
+        <div id="demo{{forloop.counter}" class="collapse">
         <p>{{e.1}}</p>
-        </div-->
+        </div>
       </div>
       {%endfor%}
   </div>
@@ -331,23 +333,24 @@
 <div id="tour" class="bg-1">
   <div class="container">
     <h3 class="text-center">LÀM PHIM</h3>
-    <p class="text-center">Những đoạn phim chiến dịch marketing được thực hiện bởi iON.<br> Xin mời thưởng thức :DD!</p>
+    <p class="text-center">{{captiondat.0.1}}</p>
+    <br>
     {% for v in videodat %}
       <div class="item active">
         <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" src="//www.youtube.com/embed/{{v}}"></iframe>
-        </div>          
+        </div>
       </div>
       <br>
     {%endfor%}
-    
+
     <!--
     <ul class="list-group">
       <li class="list-group-item">September <span class="label label-danger">Sold Out!</span></li>
-      <li class="list-group-item">October <span class="label label-danger">Sold Out!</span></li> 
-      <li class="list-group-item">November <span class="badge">3</span></li> 
+      <li class="list-group-item">October <span class="label label-danger">Sold Out!</span></li>
+      <li class="list-group-item">November <span class="badge">3</span></li>
     </ul>
-    
+
     <div class="row text-center">
       <div class="col-sm-4">
         <div class="thumbnail">
@@ -376,11 +379,11 @@
       -->
     </div>
   </div>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -397,7 +400,7 @@
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Send To</label>
               <input type="text" class="form-control" id="usrname" placeholder="Enter email">
             </div>
-              <button type="submit" class="btn btn-block">Pay 
+              <button type="submit" class="btn btn-block">Pay
                 <span class="glyphicon glyphicon-ok"></span>
               </button>
           </form>
@@ -421,7 +424,7 @@
     <div class="col-md-4">
       <p><span class="glyphicon glyphicon-map-marker"></span>{{contactdat.0.3}}</p>
       <p><span class="glyphicon glyphicon-phone"></span>{{contactdat.0.1}}</p>
-      <p><span class="glyphicon glyphicon-envelope"></span>{{contactdat.0.2}}</p>	   
+      <p><span class="glyphicon glyphicon-envelope"></span>{{contactdat.0.2}}</p>
     </div>
     <div class="col-md-8">
       <div class="row">
@@ -438,12 +441,12 @@
         <div class="col-md-12 form-group">
           <button class="btn pull-right" type="submit">Send</button>
         </div>
-      </div>	
+      </div>
     </div>
   </div>
   <br>
   <!--
-  <h3 class="text-center">From The Blog</h3>  
+  <h3 class="text-center">From The Blog</h3>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Mike</a></li>
     <li><a data-toggle="tab" href="#menu1">Chandler</a></li>
@@ -500,15 +503,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
-  <p>Bootstrap Theme Made By <a href="http://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p> 
+  <p>Bootstrap Theme Made By <a href="http://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
 </footer>
 
 
 <script>
 $(document).ready(function(){
   // Initialize Tooltip
-  $('[data-toggle="tooltip"]').tooltip(); 
-  
+  $('[data-toggle="tooltip"]').tooltip();
+
   // Add smooth scrolling to all links in navbar + footer link
   $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
@@ -523,11 +526,15 @@ $(document).ready(function(){
     $('html, body').animate({
       scrollTop: $(hash).offset().top
     }, 900, function(){
-   
+
       // Add hash (#) to URL when done scrolling (default click behavior)
       window.location.hash = hash;
     });
   });
+  $( window ).resize(function() {
+      var w = $(window).width();
+  console.log(w);
+});
 })
 </script>
 
